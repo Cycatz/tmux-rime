@@ -8,3 +8,8 @@ __pycache__/
 
 # Packaging
 build/
+
+# SWIG intermediate files
+tmux_rime/rime.py 
+lib/rime_wrap.c
+
