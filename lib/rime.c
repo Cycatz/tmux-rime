@@ -1,25 +1,4 @@
-#include <rime_api.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-#define RIME_DATA_DIR "/usr/share/rime-data"
-#define RIME_USER_DIR "/home/cycatz/.local/fcitx/rime"
-#define TMUX_RIME_VERSION "0.0.1"  
-
-#define tmux_rime_malloc(x, size, ret) \
-    do {                               \
-        (x) = malloc((size));          \
-        if ((x) == NULL) {             \
-            perror("malloc\n");        \
-            return (ret);              \
-        }                              \
-    } while (0)
-
-typedef struct _TmuxRime {
-    RimeSessionId session_id;
-    RimeApi *api;
-    int first_run;
-} TmuxRime;  
+#include "rime.h"
 
 void tmux_rime_notification_handler(void* context_object,
                                     RimeSessionId session_id,
@@ -29,6 +8,57 @@ void tmux_rime_notification_handler(void* context_object,
 {
 }
 
+int tmux_rime_process_key(TmuxRime *tmux_rime, int keycode, int mask)
+{
+    if (!tmux_rime->api->process_key(tmux_rime->session_id, keycode, mask)) {
+        return -1;
+    }
+    return 0;
+}
+
+int tmux_rime_get_commit(TmuxRime *tmux_rime)
+{
+    RIME_STRUCT(RimeCommit, commit);
+    if (!tmux_rime->api->get_commit(tmux_rime->session_id, &commit)) {
+        return -1;
+    }
+    if (!commit.text) {
+        return -2;
+    }
+    printf("%s\n", commit.text); 
+    tmux_rime->api->free_commit(&commit);
+
+    return 0;
+}
+
+
+int tmux_rime_get_schemas(TmuxRime *tmux_rime)
+{
+
+    RimeSchemaList schema_list;
+
+    if (!tmux_rime->api->get_schema_list(&schema_list)) {
+        return -1;
+    }
+
+    for (int i = 0; i < schema_list.size; i++) {
+        RimeSchemaListItem item = schema_list.list[i];
+        printf("%s %s\n", item.schema_id, item.name);
+    }
+    tmux_rime->api->free_schema_list(&schema_list);
+
+    return 0;
+}
+
+int tmux_rime_set_schema(TmuxRime *tmux_rime, const char *schema_id)
+{
+
+    if (!tmux_rime->api->select_schema(tmux_rime->session_id, schema_id)) {
+        return -1;
+    }
+
+    return 0;
+}
 int tmux_rime_start(TmuxRime *tmux_rime, int fullcheck)
 {
     const char *shared_data_dir = RIME_DATA_DIR; 
@@ -52,6 +82,8 @@ int tmux_rime_start(TmuxRime *tmux_rime, int fullcheck)
 
     tmux_rime->session_id = tmux_rime->api->create_session();
 
+    // wait for deploy
+    tmux_rime->api->join_maintenance_thread();
     printf("tmux-rime session id: %ld\n", tmux_rime->session_id);
     
     return 0;
@@ -68,24 +100,29 @@ int tmux_rime_finish(TmuxRime *tmux_rime)
     return 0;
 }
 
-int tmux_rime_init()
+TmuxRime *tmux_rime_init()
 {
     TmuxRime *tmux_rime;
-    tmux_rime_malloc(tmux_rime, sizeof(TmuxRime), -1);  
+    tmux_rime_malloc(tmux_rime, sizeof(TmuxRime), NULL);  
 
-    tmux_rime->first_run = 0;
+    tmux_rime->first_run = 1;
     tmux_rime->api = rime_get_api();
     if (!tmux_rime->api) {
         free(tmux_rime);      
-        return -1;
+        return NULL;
     }
-    tmux_rime_start(tmux_rime, 0);
-    tmux_rime_finish(tmux_rime);
-    return 0;
+
+    return tmux_rime; 
+    // tmux_rime_start(tmux_rime, 0);
+    // tmux_rime_get_schemas(tmux_rime);
+    // tmux_rime_get_commit(tmux_rime);
+    // tmux_rime_finish(tmux_rime);
+    // return 0;
 }
 
-
+/*
 int main()
 {
     tmux_rime_init();
 }
+*/
