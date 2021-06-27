@@ -25,6 +25,9 @@ class RimeWrapper:
         rime_wrapper_free_schema_list(self.rime_wrapper_ptr, _schema_list)
         return items
 
+    def set_schema(self, schema_id):
+        return rime_wrapper_set_schema(self.rime_wrapper_ptr, c_char_p(schema_id.encode('utf-8')))
+
     def get_context(self):
         _context = rime_wrapper_get_context(self.rime_wrapper_ptr)
         rime_wrapper_free_context(self.rime_wrapper_ptr, _context)

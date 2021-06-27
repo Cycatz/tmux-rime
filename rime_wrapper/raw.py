@@ -77,6 +77,11 @@ rime_wrapper_free_schema_list = _lib.rime_wrapper_free_schema_list
 rime_wrapper_free_schema_list.argtypes = [c_void_p, POINTER(RimeSchemaList)]
 rime_wrapper_free_schema_list.restype = None
 
+rime_wrapper_set_schema = _lib.rime_wrapper_set_schema
+rime_wrapper_set_schema.argtypes = [c_void_p, c_char_p]
+rime_wrapper_set_schema.restype = c_int
+
 rime_wrapper_process_key = _lib.rime_wrapper_process_key
 rime_wrapper_process_key.argtypes = [c_void_p, c_int, c_int]
 rime_wrapper_process_key.restype = c_int
+
