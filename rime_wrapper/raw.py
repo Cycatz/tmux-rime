@@ -1,87 +1,50 @@
 #!/usr/bin/env python
-import os
-import platform
+
 from ctypes import *
-import ctypes.util
 
-import rime_wrapper
-from rime_wrapper.structs import *
-
-system = platform.system()
-
-if system == 'Windows':
-    library_name = 'libwrime.dll'
-elif system == 'Darwin':
-    library_name = 'libwrime.dylib'
-else:
-    library_name = 'libwrime.so'
-
-filename = os.path.join(os.path.dirname(rime_wrapper.__file__), library_name)
-
-try:
-    _lib = ctypes.CDLL(filename)
-except (OSError, TypeError):
-    _lib = None
-    raise RuntimeError('Rime wrapper library not found')
-
-rime_wrapper_init = _lib.rime_wrapper_init
-rime_wrapper_init.argtypes = []
-rime_wrapper_init.restype = c_void_p
-
-rime_wrapper_start = _lib.rime_wrapper_start
-rime_wrapper_start.argtypes = [c_void_p, c_int]
-rime_wrapper_start.restype = c_int
-
-rime_wrapper_finish = _lib.rime_wrapper_finish
-rime_wrapper_finish.argtypes = [c_void_p]
-rime_wrapper_finish.restype = c_int
+class RimeSchemaListItem(Structure):
+    _fields_ = [('schema_id', c_char_p),
+                ('name', c_char_p),
+                ('reserved', c_void_p)]
 
 
-rime_wrapper_get_input_str = _lib.rime_wrapper_get_input_str
-rime_wrapper_get_input_str.argtypes = [c_void_p]
-rime_wrapper_get_input_str.restype = c_void_p
+class RimeSchemaList(Structure):
+    _fields_ = [('size', c_size_t),
+                ('list', POINTER(RimeSchemaListItem))]
 
-rime_wrapper_free_str = _lib.rime_wrapper_free_str
-rime_wrapper_free_str.argtypes = [c_void_p]
-rime_wrapper_free_str.restype = None
 
-rime_wrapper_set_cursor_pos = _lib.rime_wrapper_set_cursor_pos
-rime_wrapper_set_cursor_pos.argtypes = [c_void_p, c_int]
-rime_wrapper_set_cursor_pos.restype = None
+class RimeCommit(Structure):
+    _fields_ = [('data_size', c_int),
+                ('text', c_char_p)]
 
-rime_wrapper_clear_composition = _lib.rime_wrapper_clear_composition
-rime_wrapper_clear_composition.argtypes = [c_void_p]
-rime_wrapper_clear_composition.restype = None
+class RimeCandidate(Structure):
+    _fields_ = [('text',     c_char_p),
+                ('comment',  c_char_p),
+                ('reserved', c_void_p)]
 
-rime_wrapper_get_commit = _lib.rime_wrapper_get_commit
-rime_wrapper_get_commit.argtypes = [c_void_p]
-rime_wrapper_get_commit.restype = POINTER(RimeCommit)
 
-rime_wrapper_free_commit = _lib.rime_wrapper_free_commit
-rime_wrapper_free_commit.argtypes = [c_void_p, POINTER(RimeCommit)]
-rime_wrapper_free_commit.restype = None
+class RimeMenu(Structure):
+    _fields_ = [('page_size',                   c_int),
+                ('page_no',                     c_int),
+                ('is_last_page',                c_bool),
+                ('highlighted_candidate_index', c_int),
+                ('num_candidates',              c_int),
+                ('candidates',                  POINTER(RimeCandidate)),
+                ('select_keys',                 c_char_p)]
+                 
+class RimeComposition(Structure):
+    _fields_ = [('length',   c_int),
+                ('cursor_pos', c_int),
+                ('sel_start',  c_int),
+                ('sel_end',    c_int),
+                ('preedit',    c_char_p)]
 
-rime_wrapper_get_context = _lib.rime_wrapper_get_context
-rime_wrapper_get_context.argtypes = [c_void_p]
-rime_wrapper_get_context.restype = POINTER(RimeContext)
 
-rime_wrapper_free_context = _lib.rime_wrapper_free_context
-rime_wrapper_free_context.argtypes = [c_void_p, POINTER(RimeContext)]
-rime_wrapper_free_context.restype = None
 
-rime_wrapper_get_schema_list = _lib.rime_wrapper_get_schema_list
-rime_wrapper_get_schema_list.argtypes = [c_void_p]
-rime_wrapper_get_schema_list.restype = POINTER(RimeSchemaList)
-
-rime_wrapper_free_schema_list = _lib.rime_wrapper_free_schema_list
-rime_wrapper_free_schema_list.argtypes = [c_void_p, POINTER(RimeSchemaList)]
-rime_wrapper_free_schema_list.restype = None
-
-rime_wrapper_set_schema = _lib.rime_wrapper_set_schema
-rime_wrapper_set_schema.argtypes = [c_void_p, c_char_p]
-rime_wrapper_set_schema.restype = c_int
-
-rime_wrapper_process_key = _lib.rime_wrapper_process_key
-rime_wrapper_process_key.argtypes = [c_void_p, c_int, c_int]
-rime_wrapper_process_key.restype = c_int
-
+class RimeContext(Structure):
+    _fields_ = [('data_size',            c_int),
+                ('composition',          RimeComposition),
+                ('menu',                 RimeMenu),
+                # v0.9.2   
+                ('commit_text_preview',  c_char_p),
+                ('select_labels',        POINTER(c_char_p))]

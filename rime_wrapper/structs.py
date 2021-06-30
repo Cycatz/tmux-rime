@@ -34,10 +34,10 @@ class RimeMenu(Structure):
                  
 class RimeComposition(Structure):
     _fields_ = [('length',   c_int),
-              ('cursor_pos', c_int),
-              ('sel_start',  c_int),
-              ('sel_end',    c_int),
-              ('preedit',    c_char_p)]
+                ('cursor_pos', c_int),
+                ('sel_start',  c_int),
+                ('sel_end',    c_int),
+                ('preedit',    c_char_p)]
 
 
 

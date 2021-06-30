@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 #define RIME_DATA_DIR "/usr/share/rime-data"
-#define RIME_USER_DIR "/home/cycatz/.config/fcitx/rime"
+#define RIME_USER_DIR "/home/cycatz/.config/tmux_rime/rime"
 #define RIME_WRAPPER_VERSION "0.0.1"  
 
 #define rime_wrapper_malloc(x, size, ret) \
@@ -24,6 +24,7 @@ typedef struct _RimeWrapper {
 
 void rime_wrapper_notification_handler(void*, RimeSessionId, const char*, const char*);
 int  rime_wrapper_process_key(RimeWrapper *, int, int);
+int  rime_wrapper_commit_composition(RimeWrapper *);
 
 char *rime_wrapper_get_input_str(RimeWrapper *);
 void rime_wrapper_free_str(char *);
