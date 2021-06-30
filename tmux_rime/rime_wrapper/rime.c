@@ -34,6 +34,14 @@ int rime_wrapper_process_key(RimeWrapper *rime_wrapper, int keycode, int mask)
     return 0;
 }
 
+int  rime_wrapper_commit_composition(RimeWrapper *rime_wrapper)
+{
+    if (!rime_wrapper->api->commit_composition(rime_wrapper->session_id)) {
+        return -1;
+    }
+    return 0;
+}
+
 char *rime_wrapper_get_input_str(RimeWrapper *rime_wrapper)
 {
     const char* input = rime_wrapper->api->get_input(rime_wrapper->session_id);
