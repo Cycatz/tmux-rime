@@ -73,25 +73,26 @@ class TmuxRimeSession:
 
 
 class TmuxRimeRequestHandler(socketserver.BaseRequestHandler):
-    def setup(self):
-        self.login_string = 'Hello guest!\r\n'
-        self.exit = False
-
     def handle(self):
-        while not self.exit:
-            data = self.request.recv(1024).strip().decode('utf-8')
-            if data.startswith('start '):
-                self.server.start_session(data)
-            elif data.startswith('key '):
-                message = self.server.handle_key(data)
-                self.request.sendall(message.encode('utf-8'))
-            elif data.startswith('exit '):
-                self.server.exit_session(data)
-            else:
-                command = data.split(' ')[0]
-                logging.warning('Unknown command: {}'.format(command))
+        data = self.request.recv(1024).strip().decode('utf-8')
+        if data.startswith('start '):
+            self.server.start_session(data)
+        elif data.startswith('key '):
+            res = self.server.handle_key(data)
+            if res is not None:
+                self.request.sendall(res.encode('utf-8'))
+        elif data.startswith('output '):
+            res = self.server.get_output_text(data)
+            if res is not None:
+                self.request.sendall(res.encode('utf-8'))
+        elif data.startswith('exit '):
+            self.server.exit_session(data)
+        else:
+            print(data)
+            command = data.split(' ')[0]
+            logging.warning('Unknown command: {}'.format(command))
 
-                
+
 class TmuxRimeServer(socketserver.UnixStreamServer):
     def __init__(self):
         self.sessions = {}
@@ -132,11 +133,20 @@ class TmuxRimeServer(socketserver.UnixStreamServer):
 
         if session is None:
             logging.warning('Session {} does not exist!'.format(session_id))
-            # output the error message
-            pass
         else:
+            logging.info('Session {} received key: {} and modifier {}'
+                         .format(session_id, key, modifier))
             session.handle_key(key, modifier)
             return session.get_status_str()
+
+    def get_output_text(self, data):
+        session_id = int(re.split('\s', data)[1])
+        session = self.sessions.get(session_id)
+
+        if session is None:
+            logging.warning('Session {} does not exist!'.format(session_id))
+        else:
+            return session.get_output_text()
 
 if __name__ == '__main__':
     server = TmuxRimeServer()
