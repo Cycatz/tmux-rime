@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 set -x
 
+
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "$CURRENT_DIR"/utils.sh
+TMUX_RIME_SERVER="$CURRENT_DIR"/../tmux_rime/tmux_rime_server.py
 
-TMUX_RIME_CLIENT="$CURRENT_DIR"/../tmux_rime/tmux_rime_client.py
+current_window_pane=""
 rime_window_pane=""
 tmux_prefix=""
-commands_pipe=""
+commands_pipe='/tmp/tmux-rime.client'
+
 
 enable_rime_mode() {
     tmux set-window-option key-table tmux_rime
@@ -16,40 +19,65 @@ enable_rime_mode() {
     tmux set-option -g prefix None
 }
 
-set_commands_pipe() {
-    # Initialize the command pipe
-    commands_pipe="$(create_pipe)"
-    tmux set-environment COMMANDS_PIPE "$commands_pipe" 
-}
-
 handle_exit() {
-    cat /dev/null > "$commands_pipe" 
-    rm -f "$commands_pipe"
-    tmux set-environment -u COMMANDS_PIPE
+    # Restore status bar
+    # TODO: Save status and status-format before start
+    tmux set-option -g status on
+    tmux set-option -g -u status-format
+
+    # Restore prefix and key table
     tmux set-option -g prefix "$tmux_prefix"
     tmux set-window-option key-table root
     tmux switch-client -Troot
 
     local rime_window_id
-    rime_window_id="$(echo $rime_window_pane | cut -d "." -f 2)"    
+    rime_window_id="$(echo $rime_window_pane | cut -d "." -f 2)"
     tmux kill-window -t "$rime_window_id"
 }
 
 init_rime_mode() {
     trap "handle_exit" EXIT
+    "$TMUX_RIME_SERVER" &
     enable_rime_mode
-    set_commands_pipe
-
-    # "$TMUX_RIME_CLIENT" start -s "$(get_session_id)" 
 }
 
+insert_text() {
+    local inserted_text
+    inserted_text="${1#insert }"
+    tmux send-key -t "$current_window_pane" "$inserted_text"
+}
+
+update_status() {
+    local status_str
+
+    if [[ "$1" == "status" ]]; then
+        status_str="<ㄓ>"
+    else
+        status_str="${1#status }"
+    fi
+    tmux set -g status-format[0] "$status_str"
+}
+
+
 main() {
-    rime_window_pane="$1"
+    current_window_pane="$1"
+    rime_window_pane="$2"
     init_rime_mode
 
     while read -r -s statement; do
+        echo "$current_window_pane" >> /tmp/pane
+        echo "$statement" >> /tmp/statement
         case $statement in
-            key:*)
+            insert*)
+                insert_text "$statement"
+            ;;
+            status*)
+                update_status "$statement"
+            ;;
+            toggle-help)
+                :
+            ;;
+            noop)
                 :
             ;;
             exit)

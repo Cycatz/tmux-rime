@@ -161,7 +161,6 @@ int rime_wrapper_start(RimeWrapper *rime_wrapper, int fullcheck)
 
     // wait for deploy
     rime_wrapper->api->join_maintenance_thread();
-    printf("tmux-rime session id: %ld\n", rime_wrapper->session_id);
     
     return 0;
 }

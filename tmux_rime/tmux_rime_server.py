@@ -1,18 +1,27 @@
 #!/usr/bin/env python
 import os
 import re
+import sys
 import logging
 import socketserver
 from rime_wrapper import RimeWrapper
 
 
+def init_logging():
+    logging_dir = os.path.dirname(os.path.realpath(sys.argv[0]))
+    logging_path = os.path.join(logging_dir, 'tmux_rime_client.log')
+
+    file_handler = logging.FileHandler(filename=logging_path)
+    stderr_handler = logging.StreamHandler(sys.stderr)
+    handlers = [file_handler, stderr_handler]
+
+    logging.basicConfig(format='[%(asctime)s] %(levelname)-8s %(message)s',
+                        datefmt='%m-%d %H:%M:%S',
+                        level=logging.INFO,
+                        handlers=handlers)
+
+
 class TmuxRimeSession:
-    def __init__(self):
-        self.start()
-
-    def __del__(self):
-        self.finish()
-
     def start(self):
         self.rime = RimeWrapper()
         self.rime.start()
@@ -24,15 +33,15 @@ class TmuxRimeSession:
 
     def handle_key(self, key, modifier):
         self.output_text = ''
-        if key == 'Return':
+        if key == 'Enter':
             self.commit_raw_str()
-        elif key == 'Del':
+        elif key == 'Backspace' or key == 'Delete':
             pass
         elif key == 'Space':
             if not self.rime.has_candidates():
                 self.commit_text()
             else:
-               self.rime.process_key(ord(' '), 0)
+                self.rime.process_key(ord(' '), 0)
         else:
             self.rime.process_key(ord(key), 0)
 
@@ -75,27 +84,25 @@ class TmuxRimeSession:
 class TmuxRimeRequestHandler(socketserver.BaseRequestHandler):
     def handle(self):
         data = self.request.recv(1024).strip().decode('utf-8')
-        if data.startswith('start '):
-            self.server.start_session(data)
-        elif data.startswith('key '):
+        if data.startswith('key'):
             res = self.server.handle_key(data)
             if res is not None:
                 self.request.sendall(res.encode('utf-8'))
-        elif data.startswith('output '):
-            res = self.server.get_output_text(data)
+        elif data.startswith('output'):
+            res = self.server.get_output_text()
             if res is not None:
                 self.request.sendall(res.encode('utf-8'))
-        elif data.startswith('exit '):
-            self.server.exit_session(data)
+        elif data.startswith('exit'):
+            self.server.exit_session()
         else:
-            print(data)
             command = data.split(' ')[0]
             logging.warning('Unknown command: {}'.format(command))
 
 
 class TmuxRimeServer(socketserver.UnixStreamServer):
     def __init__(self):
-        self.sessions = {}
+        self.session = TmuxRimeSession()
+        self.session.start()
         self.server_address = '/tmp/tmux-rime.rime'
         try:
             os.unlink(self.server_address)
@@ -105,49 +112,30 @@ class TmuxRimeServer(socketserver.UnixStreamServer):
         socketserver.UnixStreamServer.__init__(self,
                                                self.server_address,
                                                TmuxRimeRequestHandler)
-
     def start_server(self):
-        server.serve_forever()
+        self.serve_forever()
 
-    def start_session(self, data):
-        session_id = int(re.split('\s', data)[1])
-        if self.sessions.get(session_id) is not None:
-            logging.warning('Session {} exists!'.format(session_id))
-        else:
-            self.sessions[session_id] = TmuxRimeSession()
-            print('Start session {}'.format(session_id))
+    def close_server(self):
+        self._BaseServer__shutdown_request = True
 
-    def exit_session(self, data):
-        session_id = int(re.split('\s', data)[1])
-        session = self.sessions.get(session_id)
-        if session is None:
-            logging.warning('Session {} does not exist!'.format(session_id))
-        else:
-            session.finish()
-            print('Exit session {}'.format(session_id))
+    def exit_session(self):
+        logging.info('Exit session')
+        self.session.finish()
+        self.close_server()
 
     def handle_key(self, data):
-        session_id, key, modifier = tuple(re.split('\s', data)[1:])
-        session_id = int(session_id)
-        session = self.sessions.get(session_id)
+        key, modifier = tuple(re.split('\s', data)[1:])
 
-        if session is None:
-            logging.warning('Session {} does not exist!'.format(session_id))
-        else:
-            logging.info('Session {} received key: {} and modifier {}'
-                         .format(session_id, key, modifier))
-            session.handle_key(key, modifier)
-            return session.get_status_str()
+        logging.info('Received key: {}, modifier: {}'
+                        .format(key, modifier))
+        self.session.handle_key(key, modifier)
+        return self.session.get_status_str()
 
-    def get_output_text(self, data):
-        session_id = int(re.split('\s', data)[1])
-        session = self.sessions.get(session_id)
+    def get_output_text(self):
+        return self.session.get_output_text()
 
-        if session is None:
-            logging.warning('Session {} does not exist!'.format(session_id))
-        else:
-            return session.get_output_text()
 
 if __name__ == '__main__':
-    server = TmuxRimeServer()
-    server.start_server()
+    init_logging()
+    with TmuxRimeServer() as server:
+        server.start_server()
