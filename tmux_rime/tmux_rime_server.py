@@ -36,7 +36,7 @@ class TmuxRimeSession:
         if key == 'Enter':
             self.commit_raw_str()
         elif key == 'Backspace' or key == 'Delete':
-            pass
+            self.delele_char()
         elif key == 'Space':
             if not self.rime.has_candidates():
                 self.commit_text()
@@ -44,6 +44,9 @@ class TmuxRimeSession:
                 self.rime.process_key(ord(' '), 0)
         else:
             self.rime.process_key(ord(key), 0)
+
+    def delete_char(self):
+        self.rime.process_key(65288, 0)
 
     def commit_text(self):
         """ Commit the text """

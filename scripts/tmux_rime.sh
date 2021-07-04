@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -x
 
-
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "$CURRENT_DIR"/utils.sh
 TMUX_RIME_SERVER="$CURRENT_DIR"/../tmux_rime/tmux_rime_server.py
@@ -10,7 +9,6 @@ current_window_pane=""
 rime_window_pane=""
 tmux_prefix=""
 commands_pipe='/tmp/tmux-rime.client'
-
 
 enable_rime_mode() {
     tmux set-window-option key-table tmux_rime

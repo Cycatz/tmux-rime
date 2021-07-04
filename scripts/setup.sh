@@ -2,10 +2,8 @@
 set -x
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-TMUX_RIME_SERVER="$CURRENT_DIR"/../tmux_rime/tmux_rime_server.py
 
 source "$CURRENT_DIR"/utils.sh
-
 
 create_rime_window() {
     local current_pane, rime_window_pane
