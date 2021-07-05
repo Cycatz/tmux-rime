@@ -9,7 +9,7 @@ from rime_wrapper import RimeWrapper
 
 def init_logging():
     logging_dir = os.path.dirname(os.path.realpath(sys.argv[0]))
-    logging_path = os.path.join(logging_dir, 'tmux_rime_client.log')
+    logging_path = os.path.join(logging_dir, 'tmux_rime_server.log')
 
     file_handler = logging.FileHandler(filename=logging_path)
     stderr_handler = logging.StreamHandler(sys.stderr)
@@ -32,16 +32,12 @@ class TmuxRimeSession:
         self.rime.finish()
 
     def handle_key(self, key, modifier):
+        # Special case for space
         self.output_text = ''
-        if key == 'Enter':
-            self.commit_raw_str()
-        elif key == 'Backspace' or key == 'Delete':
-            self.delele_char()
-        elif key == 'Space':
-            if not self.rime.has_candidates():
-                self.commit_text()
-            else:
-                self.rime.process_key(ord(' '), 0)
+        if key == 'Space':
+            key = ' '
+        if key == ' ' and not self.rime.has_candidates():
+            self.commit_text()
         else:
             self.rime.process_key(ord(key), 0)
 
@@ -78,11 +74,6 @@ class TmuxRimeSession:
                 res += '{}. {} '.format(i + 1 , text)
         return res
 
-    def print_info(self):
-        print('=============================')
-        print('Current output: ', self.get_output_text())
-        print(self.get_status_str())
-
 
 class TmuxRimeRequestHandler(socketserver.BaseRequestHandler):
     def handle(self):
@@ -92,7 +83,16 @@ class TmuxRimeRequestHandler(socketserver.BaseRequestHandler):
             if res is not None:
                 self.request.sendall(res.encode('utf-8'))
         elif data.startswith('output'):
+            logging.info('Start with output!')
             res = self.server.get_output_text()
+            if res is not None:
+                self.request.sendall(res.encode('utf-8'))
+        elif data.startswith('raw'):
+            res = self.server.commit_raw()
+            if res is not None:
+                self.request.sendall(res.encode('utf-8'))
+        elif data.startswith('delete'):
+            res = self.server.delete_char()
             if res is not None:
                 self.request.sendall(res.encode('utf-8'))
         elif data.startswith('exit'):
@@ -104,6 +104,8 @@ class TmuxRimeRequestHandler(socketserver.BaseRequestHandler):
 
 class TmuxRimeServer(socketserver.UnixStreamServer):
     def __init__(self):
+        # Currently not support multiple sessions
+        # self.sessions = {}
         self.session = TmuxRimeSession()
         self.session.start()
         self.server_address = '/tmp/tmux-rime.rime'
@@ -115,6 +117,7 @@ class TmuxRimeServer(socketserver.UnixStreamServer):
         socketserver.UnixStreamServer.__init__(self,
                                                self.server_address,
                                                TmuxRimeRequestHandler)
+
     def start_server(self):
         self.serve_forever()
 
@@ -134,8 +137,19 @@ class TmuxRimeServer(socketserver.UnixStreamServer):
         self.session.handle_key(key, modifier)
         return self.session.get_status_str()
 
+    def commit_raw(self):
+        logging.info('Commit the raw input')
+        self.session.commit_raw_str()
+
+    def delete_char(self):
+        logging.info('Delete a char')
+        self.session.delete_char()
+        return self.session.get_status_str()
+
     def get_output_text(self):
-        return self.session.get_output_text()
+        text = self.session.get_output_text()
+        logging.info('Get output text: {}'.format(text))
+        return text
 
 
 if __name__ == '__main__':

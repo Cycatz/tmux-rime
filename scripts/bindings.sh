@@ -27,12 +27,15 @@ bind_reg_keys() {
     tmux_rime_bind "\;"   "key -k ';'"
     tmux_rime_bind "C-\;" "key -k ';' -m ctrl"
     tmux_rime_bind "M-\;" "key -k ';' -m alt"
+
+    # Special case for Space
+    tmux_rime_bind "Space"  "key -k Space"
 }
 
 bind_special_keys() {
-    tmux_rime_bind "DS"     "key -k Delete"
-    tmux_rime_bind "BSpace" "key -k Backspace"
-    tmux_rime_bind "Space"  "key -k Space"
+    tmux_rime_bind "DC"     "delete-char"
+    tmux_rime_bind "BSpace" "delete-char"
+    tmux_rime_bind "Enter"  "commit-raw"
     tmux_rime_bind "Escape" "exit"
     tmux_rime_bind "?"      "toggle-help"
     tmux_rime_bind "Any"    "noop"
