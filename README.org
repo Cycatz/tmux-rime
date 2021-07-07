@@ -3,7 +3,7 @@
 ** Program Structure 
 #+html:   <img src="assets/structure_small.png" alt="structure.png" />
 
-** TODO   
+** Todo   
 *** IME functions  
 + +Preedit chars deleting+
 + +Raw input committing+
