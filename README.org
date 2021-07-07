@@ -2,3 +2,22 @@
 
 ** Program Structure 
 #+html:   <img src="assets/structure_small.png" alt="structure.png" />
+
+** TODO   
+*** IME functions  
++ +Preedit chars deleting+
++ +Raw input committing+
++ Candidate selection
++ Schema selection
+
+*** Customization 
++ Custom IME status bar
++ Custom plugin options  
+  + Use tmux user options (prefixed with ~@~) to define variables
++ Custom key mappings
+  + Define what keys need to be bound in tmux
+
+*** Misc 
++ Write tests
++ Write documentation
++ Set up plugin installation process
