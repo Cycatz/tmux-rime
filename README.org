@@ -1,5 +1,5 @@
 * Tmux-Rime 
-#+html:   <img src="assets/structure_small.png" alt="structure.png" />
+#+html:   <img src="assets/tmux-rime.png" alt="logo.png" />
 
 ** Program Structure 
 #+html:   <img src="assets/structure_small.png" alt="structure.png" />
