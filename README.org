@@ -1,4 +1,5 @@
 * Tmux-Rime 
+#+html:   <img src="assets/structure_small.png" alt="structure.png" />
 
 ** Program Structure 
 #+html:   <img src="assets/structure_small.png" alt="structure.png" />
