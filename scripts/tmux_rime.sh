@@ -42,7 +42,7 @@ init_rime_mode() {
 insert_text() {
     local inserted_text
     inserted_text="${1#insert }"
-    tmux send-key -t "$current_window_pane" "$inserted_text"
+    tmux send-key -l -t "$current_window_pane" "$inserted_text"
 }
 
 update_status() {
