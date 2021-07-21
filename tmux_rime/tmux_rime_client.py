@@ -6,10 +6,6 @@ import socket
 import argparse
 
 
-# Fix the FIFO variable for testing
-TMUX_RIME_FIFO = '/tmp/tmux-rime.client'
-
-
 def init_logging():
     logging_dir = os.path.dirname(os.path.realpath(sys.argv[0]))
     logging_path = os.path.join(logging_dir, 'tmux_rime_client.log')
@@ -74,7 +70,7 @@ class TmuxRimeParser:
 
 class TmuxRimeClient:
     def __init__(self):
-        self.server_address = '/tmp/tmux-rime.rime'
+        self.server_address = '/tmp/vt-rime'
         # [test] start session when initializing
         # self.start(0)
 
@@ -89,9 +85,8 @@ class TmuxRimeClient:
             finally:
                 s.close()
 
-    def write_pipe(self, data):
-        with open(TMUX_RIME_FIFO, 'w') as f:
-            f.write(data)
+    def print_actions(self, data):
+        print(data, end='')
 
     def start_session(self):
         logging.info('Start session')
@@ -100,20 +95,20 @@ class TmuxRimeClient:
     def exit_session(self):
         logging.info('Exit session')
         self.send_data('exit'.encode('utf-8'))
-        self.write_pipe('exit\n')
+        self.print_actions('exit\n')
 
     def tmux_insert_text(self):
         inserted_text = self.send_data('output'.encode('utf-8'), True)
         if inserted_text is not None and len(inserted_text) > 0:
             message = 'insert {}'.format(inserted_text.decode('utf-8'))
             logging.info(message)
-            self.write_pipe(message + '\n')
+            self.print_actions(message + '\n')
 
     def tmux_update_status(self, status_str):
         if status_str is not None:
             message = 'status {}'.format(status_str.decode('utf-8'))
             logging.info(message)
-            self.write_pipe(message + '\n')
+            self.print_actions(message + '\n')
 
     def send_key(self, key, modifier):
         logging.info('Get key: {}, modifier: {}'.format(key, modifier))

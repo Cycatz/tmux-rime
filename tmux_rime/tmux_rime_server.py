@@ -108,7 +108,7 @@ class TmuxRimeServer(socketserver.UnixStreamServer):
         # self.sessions = {}
         self.session = TmuxRimeSession()
         self.session.start()
-        self.server_address = '/tmp/tmux-rime.rime'
+        self.server_address = '/tmp/vt-rime'
         try:
             os.unlink(self.server_address)
         except OSError:
