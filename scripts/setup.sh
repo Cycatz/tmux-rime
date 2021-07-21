@@ -14,7 +14,7 @@ create_rime_window() {
 
 setup_status_bar() {
     current_status="$(tmux show -gqv status-format[0])"
-    tmux set-option -g status-format[0] "Rime ㄓ"
+    tmux set-option -g status-format[0] "[ㄓ]"
     tmux set-option -g status-format[1] "$current_status"
     tmux set-option -g status 2
 }

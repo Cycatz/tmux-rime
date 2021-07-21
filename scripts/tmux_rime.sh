@@ -49,7 +49,7 @@ update_status() {
     local status_str
 
     if [[ "$1" == "status" ]]; then
-        status_str="<ㄓ>"
+        status_str="[ㄓ]"
     else
         status_str="${1#status }"
     fi
