@@ -31,15 +31,13 @@ class TmuxRimeSession:
     def finish(self):
         self.rime.finish()
 
-    def handle_key(self, key, modifier):
+    def handle_key(self, key):
         # Special case for space
         self.output_text = ''
-        if key == 'Space':
-            key = ' '
-        if key == ' ' and not self.rime.has_candidates():
+        if key == 32 and not self.rime.has_candidates():
             self.commit_text()
         else:
-            self.rime.process_key(ord(key), 0)
+            self.rime.process_key(key, 0)
 
     def delete_char(self):
         self.rime.process_key(65288, 0)
@@ -78,45 +76,37 @@ class TmuxRimeSession:
 class TmuxRimeRequestHandler(socketserver.BaseRequestHandler):
     def handle(self):
         data = self.request.recv(1024).strip().decode('utf-8')
+        res = None
         if data.startswith('key'):
             res = self.server.handle_key(data)
-            if res is not None:
-                self.request.sendall(res.encode('utf-8'))
         elif data.startswith('output'):
-            logging.info('Start with output!')
             res = self.server.get_output_text()
-            if res is not None:
-                self.request.sendall(res.encode('utf-8'))
         elif data.startswith('raw'):
             res = self.server.commit_raw()
-            if res is not None:
-                self.request.sendall(res.encode('utf-8'))
         elif data.startswith('delete'):
             res = self.server.delete_char()
-            if res is not None:
-                self.request.sendall(res.encode('utf-8'))
         elif data.startswith('exit'):
+            logging.info('Exit the session')
             self.server.exit_session()
         else:
             command = data.split(' ')[0]
             logging.warning('Unknown command: {}'.format(command))
 
+        if res is not None:
+            logging.info('Send "{}"'.format(res))
+            self.request.sendall(res.encode('utf-8'))
 
-class TmuxRimeServer(socketserver.UnixStreamServer):
+class TmuxRimeServer(socketserver.TCPServer):
     def __init__(self):
         # Currently not support multiple sessions
         # self.sessions = {}
         self.session = TmuxRimeSession()
         self.session.start()
-        self.server_address = '/tmp/vt-rime'
-        try:
-            os.unlink(self.server_address)
-        except OSError:
-            if os.path.exists(self.server_address):
-                raise
-        socketserver.UnixStreamServer.__init__(self,
-                                               self.server_address,
-                                               TmuxRimeRequestHandler)
+        self.server_address = ('127.0.0.1', 2133)
+        socketserver.TCPServer.allow_reuse_address = True
+        socketserver.TCPServer.__init__(self,
+                                        self.server_address,
+                                        TmuxRimeRequestHandler)
 
     def start_server(self):
         self.serve_forever()
@@ -130,11 +120,9 @@ class TmuxRimeServer(socketserver.UnixStreamServer):
         self.close_server()
 
     def handle_key(self, data):
-        key, modifier = tuple(re.split('\s', data)[1:])
-
-        logging.info('Received key: {}, modifier: {}'
-                        .format(key, modifier))
-        self.session.handle_key(key, modifier)
+        key = int(re.split('\s', data)[1])
+        logging.info('Received key: {}' .format(key))
+        self.session.handle_key(key)
         return self.session.get_status_str()
 
     def commit_raw(self):
