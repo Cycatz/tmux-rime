@@ -74,7 +74,7 @@ class TmuxRimeParser:
 
 class TmuxRimeClient:
     def __init__(self):
-        self.server_address = '/tmp/tmux-rime.rime'
+        self.server_address = '/tmp/tmux-rime-socket'
         # [test] start session when initializing
         # self.start(0)
 
