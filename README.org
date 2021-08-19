@@ -19,17 +19,21 @@ Install required packages:
 pkg install git gcc gmake bash tmux zh-librime zh-fcitx-rime
 #+end_src
 
-Copy the whole directory ~/usr/local/share/rime-data~ into ~/usr/share~ (I know it's a bad practice in FreeBSD)
-#+begin_src 
-sudo cp -r /usr/local/share/rime-data /usr/share/
-#+end_src
-
-Note: you may need to create a symobol link called ~python~ to link to ~python3.X~
+You may need to create a symobol link called ~python~ to link to ~python3.X~
 #+begin_src sh 
 mkdir ~/bin
 ln -s /usr/local/bin/python3.8 ~/bin/python
 #+end_src
 
+
+Create a empty directory ~/usr/share/rime-data~ (I know it's a bad practice in FreeBSD), and put all your rime configs into ~/.config/tmux_rime/rime/~.
+
+You may also copy the default configs (under ~/usr/local/share/rime-data~):
+#+begin_src 
+sudo touch /usr/share/rime-data
+mkdir -p ~/.config/tmux_rime
+cp -r /usr/local/share/rime-data ~/.config/tmux_rime/rime
+#+end_src
 
 *** Building
 
