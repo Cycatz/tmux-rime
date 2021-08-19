@@ -1,0 +1,211 @@
+[08-19 22:16:07] INFO     Get key: j, modifier: None
+[08-19 22:16:09] INFO     Get key: i, modifier: None
+[08-19 22:16:10] INFO     Get key: i, modifier: None
+[08-19 22:16:10] INFO     Get key: i, modifier: None
+[08-19 22:16:10] INFO     Get key: i, modifier: None
+[08-19 22:16:10] INFO     Get key: i, modifier: None
+[08-19 22:16:11] INFO     Get key: i, modifier: None
+[08-19 22:16:11] INFO     Get key: i, modifier: None
+[08-19 22:16:12] INFO     Get key: j, modifier: None
+[08-19 22:16:13] INFO     Get key: i, modifier: None
+[08-19 22:16:13] INFO     Get key: i, modifier: None
+[08-19 22:16:15] INFO     Get key: i, modifier: None
+[08-19 22:16:15] INFO     Get key: i, modifier: None
+[08-19 22:16:16] INFO     Get key: i, modifier: None
+[08-19 22:16:18] INFO     Get key: A, modifier: ctrl
+[08-19 22:16:19] INFO     Get key: i, modifier: None
+[08-19 22:16:21] INFO     Get key: j, modifier: None
+[08-19 22:16:21] INFO     Get key: i, modifier: None
+[08-19 22:16:22] INFO     Get key: i, modifier: None
+[08-19 22:16:22] INFO     Get key: i, modifier: None
+[08-19 22:16:23] INFO     Commit the raw input
+[08-19 22:16:23] INFO     Commit the raw input
+[08-19 22:16:23] INFO     Commit the raw input
+[08-19 22:16:24] INFO     Get key: i, modifier: None
+[08-19 22:16:24] INFO     Get key: i, modifier: None
+[08-19 22:16:25] INFO     Get key: i, modifier: None
+[08-19 22:16:26] INFO     Commit the raw input
+[08-19 22:16:26] INFO     Commit the raw input
+[08-19 22:16:26] INFO     Commit the raw input
+[08-19 22:16:26] INFO     Commit the raw input
+[08-19 22:16:27] INFO     Get key: i, modifier: None
+[08-19 22:16:27] INFO     Get key: i, modifier: None
+[08-19 22:16:29] INFO     Get key: z, modifier: None
+[08-19 22:16:29] INFO     Get key: z, modifier: None
+[08-19 22:16:29] INFO     Get key: X, modifier: ctrl
+[08-19 22:16:30] INFO     Get key: X, modifier: ctrl
+[08-19 22:16:30] INFO     Get key: X, modifier: ctrl
+[08-19 22:16:30] INFO     Get key: X, modifier: ctrl
+[08-19 22:16:30] INFO     Get key: X, modifier: ctrl
+[08-19 22:16:31] INFO     Get key: i, modifier: None
+[08-19 22:17:36] INFO     Get key: A, modifier: ctrl
+[08-19 22:17:37] INFO     Get key: q, modifier: None
+[08-19 22:25:52] INFO     Get key: j, modifier: None
+[08-19 22:25:52] INFO     Get key: i, modifier: None
+[08-19 22:25:53] INFO     Get key: i, modifier: None
+[08-19 22:25:53] INFO     Get key: i, modifier: None
+[08-19 22:25:55] INFO     Get key: w, modifier: None
+[08-19 22:25:55] INFO     Get key: q, modifier: None
+[08-19 22:25:56] INFO     Exit session
+[08-19 22:25:57] INFO     Get key: q, modifier: None
+[08-19 22:25:57] INFO     Get key: q, modifier: None
+[08-19 22:25:58] INFO     Get key: q, modifier: None
+[08-19 22:25:58] INFO     Get key: q, modifier: None
+[08-19 22:25:58] INFO     Get key: q, modifier: None
+[08-19 22:27:07] INFO     Get key: j, modifier: None
+[08-19 22:27:07] INFO     Get key: i, modifier: None
+[08-19 22:27:08] INFO     Get key: i, modifier: None
+[08-19 22:27:11] INFO     Get key: q, modifier: None
+[08-19 22:27:35] INFO     Get key: aa, modifier: None
+[08-19 22:27:36] INFO     Get key: a, modifier: None
+[08-19 22:29:54] INFO     Get key: j, modifier: None
+[08-19 22:29:54] INFO     status ㄨ | 1. 吳 2. 五 3. 物 4. 屋 5. 無 
+[08-19 22:29:54] INFO     Get key: j, modifier: None
+[08-19 22:29:54] INFO     status ㄨ ㄨ | 1. 五五 2. 嗚嗚 3. 污物 4. 無誤 5. 無物 
+[08-19 22:29:54] INFO     Get key: j, modifier: None
+[08-19 22:29:54] INFO     status ㄨ ㄨ ㄨ | 1. 嗚嗚嗚 2. 五五五 3. 五五 4. 嗚嗚 5. 污物 
+[08-19 22:29:54] INFO     Get key: j, modifier: None
+[08-19 22:29:54] INFO     status ㄨ ㄨ ㄨ ㄨ | 1. 五嗚嗚嗚 2. 嗚嗚嗚 3. 五五五 4. 五五 5. 嗚嗚 
+[08-19 22:29:54] INFO     Get key: j, modifier: None
+[08-19 22:29:54] INFO     status ㄨ ㄨ ㄨ ㄨ ㄨ | 1. 吳五嗚嗚嗚 2. 五嗚嗚嗚 3. 嗚嗚嗚 4. 五五五 5. 五五 
+[08-19 22:29:55] INFO     Get key: Space, modifier: None
+[08-19 22:29:55] INFO     status ㄨ ㄨ ㄨ ㄨ ㄨˉ | 1. 吳五嗚嗚嗚 2. 五嗚嗚嗚 3. 嗚嗚嗚 4. 五五五 5. 五五 
+[08-19 22:29:55] INFO     Get key: Space, modifier: None
+[08-19 22:29:55] INFO     status 吳五嗚嗚嗚 | 
+[08-19 22:29:56] INFO     Get key: Space, modifier: None
+[08-19 22:29:56] INFO     status 
+[08-19 22:29:56] INFO     insert 吳五嗚嗚嗚
+[08-19 22:29:57] INFO     Get key: j, modifier: None
+[08-19 22:29:57] INFO     status ㄨ | 1. 吳 2. 五 3. 物 4. 屋 5. 無 
+[08-19 22:29:57] INFO     Get key: i, modifier: None
+[08-19 22:29:57] INFO     status ㄨㄛ | 1. 我 2. 握 3. 五喔 4. 婐 5. 物嚄 
+[08-19 22:29:57] INFO     Get key: 3, modifier: None
+[08-19 22:29:57] INFO     status ㄨㄛˇ | 1. 我 2. 婐 3. 婑 4. 捰 5. 𢦴 
+[08-19 22:29:58] INFO     Get key: Space, modifier: None
+[08-19 22:29:58] INFO     status 我 | 
+[08-19 22:29:58] INFO     Get key: Space, modifier: None
+[08-19 22:29:58] INFO     status 
+[08-19 22:29:58] INFO     insert 我
+[08-19 22:29:58] INFO     Get key: Space, modifier: None
+[08-19 22:29:58] INFO     status 
+[08-19 22:29:59] INFO     Get key: s, modifier: None
+[08-19 22:29:59] INFO     status ㄋ | 1. 妳 2. 那 3. 你 4. 拿 5. 能 
+[08-19 22:29:59] INFO     Get key: u, modifier: None
+[08-19 22:29:59] INFO     status ㄋㄧ | 1. 妳 2. 你 3. 泥 4. 呢 5. 哪一 
+[08-19 22:29:59] INFO     Get key: 3, modifier: None
+[08-19 22:29:59] INFO     status ㄋㄧˇ | 1. 妳 2. 你 3. 擬 4. 伱 5. 旎 
+[08-19 22:30:00] INFO     Get key: c, modifier: None
+[08-19 22:30:00] INFO     status ㄋㄧˇ ㄏ | 1. 你好 2. 你會 3. 你還 4. 妳會 5. 你行 
+[08-19 22:30:00] INFO     Get key: l, modifier: None
+[08-19 22:30:00] INFO     status ㄋㄧˇ ㄏㄠ | 1. 你好 2. 妳好 3. 你會 4. 你還 5. 妳會 
+[08-19 22:30:00] INFO     Get key: 3, modifier: None
+[08-19 22:30:00] INFO     status ㄋㄧˇ ㄏㄠˇ | 1. 你好 2. 妳好 3. 妳 4. 你 5. 擬 
+[08-19 22:30:00] INFO     Get key: Space, modifier: None
+[08-19 22:30:00] INFO     status 你好 | 
+[08-19 22:30:00] INFO     Get key: Space, modifier: None
+[08-19 22:30:00] INFO     status 
+[08-19 22:30:00] INFO     insert 你好
+[08-19 22:30:03] INFO     Commit the raw input
+[08-19 22:30:03] INFO     status 
+[08-19 22:30:03] INFO     Commit the raw input
+[08-19 22:30:03] INFO     status 
+[08-19 22:30:03] INFO     Commit the raw input
+[08-19 22:30:03] INFO     status 
+[08-19 22:30:04] INFO     Exit session
+[08-19 23:01:37] INFO     Get key: a, modifier: None
+[08-19 23:01:37] INFO     status ㄇ | 1. 嗎 2. 沒 3. 面 4. 滿 5. 毛 
+[08-19 23:01:40] INFO     Get key: a, modifier: None
+[08-19 23:01:40] INFO     status ㄇ ㄇ | 1. 密碼 2. 明明 3. 慢慢 4. 莫名 5. 謀面 
+[08-19 23:01:40] INFO     Get key: a, modifier: None
+[08-19 23:01:40] INFO     status ㄇ ㄇ ㄇ | 1. 某某某 2. 嬤嬤媽 3. 沒面目 4. 邈冥冥 5. 摸盲盲 
+[08-19 23:01:40] INFO     Get key: a, modifier: None
+[08-19 23:01:40] INFO     status ㄇ ㄇ ㄇ ㄇ | 1. 密密麻麻 2. 迷迷濛濛 3. 迷迷茫茫 4. 渺渺茫茫 5. 某某某 
+[08-19 23:01:41] INFO     Get key: a, modifier: None
+[08-19 23:01:41] INFO     status ㄇ ㄇ ㄇ ㄇ ㄇ | 1. 嗎密密麻麻 2. 密密麻麻 3. 迷迷濛濛 4. 迷迷茫茫 5. 渺渺茫茫 
+[08-19 23:01:41] INFO     Get key: a, modifier: None
+[08-19 23:01:41] INFO     status ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ | 1. 密碼密密麻麻 2. 密密麻麻 3. 迷迷濛濛 4. 迷迷茫茫 5. 渺渺茫茫 
+[08-19 23:01:41] INFO     Get key: a, modifier: None
+[08-19 23:01:41] INFO     status ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ | 1. 某某某密密麻麻 2. 密密麻麻 3. 迷迷濛濛 4. 迷迷茫茫 5. 渺渺茫茫 
+[08-19 23:01:46] INFO     Get key: j, modifier: None
+[08-19 23:01:46] INFO     status ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄇㄨ | 1. 密密麻麻沒面目 2. 密密麻麻 3. 迷迷濛濛 4. 迷迷茫茫 5. 渺渺茫茫 
+[08-19 23:01:48] INFO     Get key: i, modifier: None
+[08-19 23:01:48] INFO     status ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄨㄛ | 1. 某某某密密麻麻我 2. 密密麻麻 3. 迷迷濛濛 4. 迷迷茫茫 5. 渺渺茫茫 
+[08-19 23:01:48] INFO     Get key: 3, modifier: None
+[08-19 23:01:49] INFO     status ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄨㄛˇ | 1. 某某某密密麻麻我 2. 密密麻麻 3. 迷迷濛濛 4. 迷迷茫茫 5. 渺渺茫茫 
+[08-19 23:02:05] INFO     Get key: a, modifier: None
+[08-19 23:02:05] INFO     status ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄨㄛˇ ㄇ | 1. 某某某密密麻麻我們 2. 密密麻麻 3. 迷迷濛濛 4. 迷迷茫茫 5. 渺渺茫茫 
+[08-19 23:02:05] INFO     Get key: a, modifier: None
+[08-19 23:02:05] INFO     status ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄨㄛˇ ㄇ ㄇ | 1. 某某某密密麻麻我媽媽 2. 密密麻麻 3. 迷迷濛濛 4. 迷迷茫茫 5. 渺渺茫茫 
+[08-19 23:02:05] INFO     Get key: a, modifier: None
+[08-19 23:02:05] INFO     status ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄨㄛˇ ㄇ ㄇ ㄇ | 1. 某某某密密麻麻我們密碼 2. 密密麻麻 3. 迷迷濛濛 4. 迷迷茫茫 5. 渺渺茫茫 
+[08-19 23:02:06] INFO     Get key: a, modifier: None
+[08-19 23:02:06] INFO     status ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄨㄛˇ ㄇ ㄇ ㄇ ㄇ | 1. 某某某密密麻麻我密密麻麻 2. 密密麻麻 3. 迷迷濛濛 4. 迷迷茫茫 5. 渺渺茫茫 
+[08-19 23:02:09] INFO     Get key: j, modifier: None
+[08-19 23:02:09] INFO     status ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄨㄛˇ ㄇ ㄇ ㄇ ㄇㄨ | 1. 某某某密密麻麻我們沒面目 2. 密密麻麻 3. 迷迷濛濛 4. 迷迷茫茫 5. 渺渺茫茫 
+[08-19 23:02:12] INFO     Get key: i, modifier: None
+[08-19 23:02:12] INFO     status ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄨㄛˇ ㄇ ㄇ ㄇ ㄇ ㄨㄛ | 1. 某某某密密麻麻我密密麻麻我 2. 密密麻麻 3. 迷迷濛濛 4. 迷迷茫茫 5. 渺渺茫茫 
+[08-19 23:02:13] INFO     Get key: 3, modifier: None
+[08-19 23:02:13] INFO     status ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄇ ㄨㄛˇ ㄇ ㄇ ㄇ ㄇ ㄨㄛˇ | 1. 某某某密密麻麻我密密麻麻我 2. 密密麻麻 3. 迷迷濛濛 4. 迷迷茫茫 5. 渺渺茫茫 
+[08-19 23:03:08] INFO     Get key: j, modifier: None
+[08-19 23:03:08] INFO     status ㄨ | 1. 吳 2. 五 3. 物 4. 屋 5. 無 
+[08-19 23:03:09] INFO     Get key: i, modifier: None
+[08-19 23:03:09] INFO     status ㄨㄛ | 1. 我 2. 握 3. 五喔 4. 婐 5. 物嚄 
+[08-19 23:03:09] INFO     Get key: 3, modifier: None
+[08-19 23:03:09] INFO     status ㄨㄛˇ | 1. 我 2. 婐 3. 婑 4. 捰 5. 𢦴 
+[08-19 23:03:10] INFO     Get key: r, modifier: None
+[08-19 23:03:10] INFO     status ㄨㄛˇ ㄐ | 1. 我就 2. 我覺 3. 我見 4. 我將 5. 我講 
+[08-19 23:03:10] INFO     Get key: u, modifier: None
+[08-19 23:03:10] INFO     status ㄨㄛˇ ㄐㄧ | 1. 我急 2. 我就 3. 我覺 4. 我見 5. 我將 
+[08-19 23:03:10] INFO     Get key: Space, modifier: None
+[08-19 23:03:10] INFO     status ㄨㄛˇ ㄐㄧˉ | 1. 我機 2. 我 3. 婐 4. 婑 5. 捰 
+[08-19 23:03:11] INFO     Get key: 1, modifier: None
+[08-19 23:03:11] INFO     status ㄨㄛˇ ㄐㄧˉ ㄅ | 1. 我基本 2. 我就 3. 我覺 4. 我見 5. 我將 
+[08-19 23:03:11] INFO     Get key: p, modifier: None
+[08-19 23:03:11] INFO     status ㄨㄛˇ ㄐㄧˉ ㄅㄣ | 1. 我基本 2. 我就 3. 我覺 4. 我見 5. 我將 
+[08-19 23:03:11] INFO     Get key: 3, modifier: None
+[08-19 23:03:11] INFO     status ㄨㄛˇ ㄐㄧˉ ㄅㄣˇ | 1. 我基本 2. 我 3. 婐 4. 婑 5. 捰 
+[08-19 23:03:11] INFO     Get key: g, modifier: None
+[08-19 23:03:11] INFO     status ㄨㄛˇ ㄐㄧˉ ㄅㄣˇ ㄕ | 1. 我基本上 2. 我基本 3. 我就 4. 我覺 5. 我見 
+[08-19 23:03:11] INFO     Get key: ;, modifier: None
+[08-19 23:03:11] INFO     status ㄨㄛˇ ㄐㄧˉ ㄅㄣˇ ㄕㄤ | 1. 我基本上 2. 我基本 3. 我就 4. 我覺 5. 我見 
+[08-19 23:03:12] INFO     Get key: 4, modifier: None
+[08-19 23:03:12] INFO     status ㄨㄛˇ ㄐㄧˉ ㄅㄣˇ ㄕㄤˋ | 1. 我基本上 2. 我基本 3. 我 4. 婐 5. 婑 
+[08-19 23:03:12] INFO     Get key: Space, modifier: None
+[08-19 23:03:12] INFO     status 我基本上 | 
+[08-19 23:03:12] INFO     Get key: Space, modifier: None
+[08-19 23:03:12] INFO     status 
+[08-19 23:03:12] INFO     insert 我基本上
+[08-19 23:03:13] INFO     Exit session
+[08-19 23:11:19] INFO     Get key: j, modifier: None
+[08-19 23:11:19] INFO     status ㄨ | 1. 吳 2. 五 3. 物 4. 屋 5. 無 
+[08-19 23:11:20] INFO     Get key: i, modifier: None
+[08-19 23:11:20] INFO     status ㄨㄛ | 1. 我 2. 握 3. 五喔 4. 婐 5. 物嚄 
+[08-19 23:11:20] INFO     Get key: 3, modifier: None
+[08-19 23:11:20] INFO     status ㄨㄛˇ | 1. 我 2. 婐 3. 婑 4. 捰 5. 𢦴 
+[08-19 23:11:20] INFO     Get key: r, modifier: None
+[08-19 23:11:20] INFO     Get key: e, modifier: None
+[08-19 23:11:20] INFO     status ㄨㄛˇ ㄐ | 1. 我就 2. 我覺 3. 我見 4. 我將 5. 我講 
+[08-19 23:11:20] INFO     status ㄨㄛˇ ㄐ ㄍ | 1. 我見過 2. 我就 3. 我覺 4. 我見 5. 我將 
+[08-19 23:11:21] INFO     Get key: Space, modifier: None
+[08-19 23:11:21] INFO     status ㄨㄛˇ ㄐ ㄍˉ | 1. 我機關 2. 我就 3. 我覺 4. 我見 5. 我將 
+[08-19 23:11:21] INFO     Get key: Space, modifier: None
+[08-19 23:11:21] INFO     status 我機關 | 
+[08-19 23:11:21] INFO     Get key: Space, modifier: None
+[08-19 23:11:21] INFO     status 
+[08-19 23:11:21] INFO     insert 我機關
+[08-19 23:11:23] INFO     Commit the raw input
+[08-19 23:11:23] INFO     status 
+[08-19 23:11:24] INFO     Exit session
+[08-19 23:11:29] INFO     Get key: j, modifier: None
+[08-19 23:11:29] INFO     status ㄨ | 1. 吳 2. 五 3. 物 4. 屋 5. 無 
+[08-19 23:11:29] INFO     Get key: j, modifier: None
+[08-19 23:11:29] INFO     status ㄨ ㄨ | 1. 五五 2. 嗚嗚 3. 污物 4. 無誤 5. 無物 
+[08-19 23:11:29] INFO     Get key: j, modifier: None
+[08-19 23:11:29] INFO     status ㄨ ㄨ ㄨ | 1. 嗚嗚嗚 2. 五五五 3. 五五 4. 嗚嗚 5. 污物 
+[08-19 23:11:30] INFO     Get key: j, modifier: None
+[08-19 23:11:30] INFO     status ㄨ ㄨ ㄨ ㄨ | 1. 五嗚嗚嗚 2. 嗚嗚嗚 3. 五五五 4. 五五 5. 嗚嗚 
+[08-19 23:11:30] INFO     Get key: Space, modifier: None
+[08-19 23:11:30] INFO     status ㄨ ㄨ ㄨ ㄨˉ | 1. 五嗚嗚嗚 2. 嗚嗚嗚 3. 五五五 4. 五五 5. 嗚嗚 
+[08-19 23:11:30] INFO     Get key: Space, modifier: None
+[08-19 23:11:30] INFO     status 五嗚嗚嗚 | 
+[08-19 23:11:30] INFO     Exit session
