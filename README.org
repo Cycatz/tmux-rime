@@ -1,8 +1,61 @@
 * Tmux-Rime 
 #+html:   <img src="assets/tmux-rime.png" alt="logo.png" width="256" height="256" />
 
+
+** Description
+~tmux-rime~ is a tmux plugin that let you type CJK chars within terminal.
+
+
 ** Program Structure 
 #+html:   <img src="assets/structure_small.png" alt="structure.png" />
+
+
+** Installation 
+*** Prerequisite
+**** FreeBSD 
+
+Install required packages: 
+#+begin_src sh
+pkg install git gcc gmake bash tmux zh-librime zh-fcitx-rime
+#+end_src
+
+You may need to create a symobol link called ~python~ to link to ~python3.X~
+#+begin_src sh 
+mkdir ~/bin
+ln -s /usr/local/bin/python3.8 ~/bin/python
+#+end_src
+
+
+Create a empty directory ~/usr/share/rime-data~ (I know it's a bad practice in FreeBSD), and put all your rime configs into ~/.config/tmux_rime/rime/~.
+
+You may also copy the default configs (under ~/usr/local/share/rime-data~):
+#+begin_src 
+sudo touch /usr/share/rime-data
+mkdir -p ~/.config/tmux_rime
+cp -r /usr/local/share/rime-data ~/.config/tmux_rime/rime
+#+end_src
+
+*** Building
+
+Clone the repo and build it:  
+#+begin_src sh
+mkdir -p ~/.tmux/plugins/
+git clone https://gitlab.com/Cycatz/tmux-rime.git ~/.tmux/plugins/tmux-rime
+cd ~/.tmux/plugins/tmux-rime
+./build.sh
+#+end_src
+
+Add the following line to your tmux config, e.g., =~/.tmux.conf~=:
+#+begin_src sh 
+run-shell '~/.tmux/plugins/tmux-rime/tmux_rime.tmux'
+#+end_src
+
+
+** Usage 
++ ~Prefix + t~ to enable the rime mode
++ ~Enter~ to commit raw characters
++ ~Esc~ to exit the rime mode
+
 
 ** Todo   
 *** IME functions  
