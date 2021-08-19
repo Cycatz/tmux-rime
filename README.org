@@ -28,7 +28,7 @@ cp -r /usr/local/share/rime-data ~/.config/tmux_rime/rime
 
 Clone the repo and build it:  
 #+begin_src sh
-git clone https://gitlab.com/Cycatz/tmux-rime.git rime-server
+git clone https://github.com/Cycatz/tmux-rime.git rime-server
 cd ./rime-server
 git checkout vt-rime 
 ./build.sh
