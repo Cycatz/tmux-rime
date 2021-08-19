@@ -9,6 +9,8 @@
 ** Program Structure 
 #+html:   <img src="assets/structure_small.png" alt="structure.png" />
 
+** Screenshot 
+#+html:   <img src="assets/tmux-rime_screenshot.png" alt="screenshot.png" />
 
 ** Installation 
 *** Prerequisite
