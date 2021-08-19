@@ -1,15 +1,4 @@
-* Tmux-Rime 
-#+html:   <img src="assets/tmux-rime.png" alt="logo.png" width="256" height="256" />
-
-
-** Description
-~tmux-rime~ is a tmux plugin that let you type CJK chars within terminal.
-
-
-** Program Structure 
-#+html:   <img src="assets/structure_small.png" alt="structure.png" />
-
-
+* VT Rime server
 ** Installation 
 *** Prerequisite
 **** FreeBSD 
@@ -39,39 +28,14 @@ cp -r /usr/local/share/rime-data ~/.config/tmux_rime/rime
 
 Clone the repo and build it:  
 #+begin_src sh
-mkdir -p ~/.tmux/plugins/
-git clone https://gitlab.com/Cycatz/tmux-rime.git ~/.tmux/plugins/tmux-rime
-cd ~/.tmux/plugins/tmux-rime
+git clone https://gitlab.com/Cycatz/tmux-rime.git rime-server
+cd ./rime-server
+git checkout vt-rime 
 ./build.sh
 #+end_src
 
-Add the following line to your tmux config, e.g., =~/.tmux.conf~=:
-#+begin_src sh 
-run-shell '~/.tmux/plugins/tmux-rime/tmux_rime.tmux'
-#+end_src
-
-
 ** Usage 
-+ ~Prefix + t~ to enable the rime mode
-+ ~Enter~ to commit raw characters
-+ ~Esc~ to exit the rime mode
-
-
-** Todo   
-*** IME functions  
-+ +Preedit chars deleting+
-+ +Raw input committing+
-+ Candidate selection
-+ Schema selection
-
-*** Customization 
-+ Custom IME status bar
-+ Custom plugin options  
-  + Use tmux user options (prefixed with ~@~) to define variables
-+ Custom key mappings
-  + Define what keys need to be bound in tmux
-
-*** Misc 
-+ Write tests
-+ Write documentation
-+ Set up plugin installation process
+Run the rime server:  
+#+begin_src sh
+./rime-server/rime-server/rime-server.py
+#+end_src
