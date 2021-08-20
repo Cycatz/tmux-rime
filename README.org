@@ -19,7 +19,7 @@ Create a empty directory ~/usr/share/rime-data~ (I know it's a bad practice in F
 
 You may also copy the default configs (under ~/usr/local/share/rime-data~):
 #+begin_src 
-sudo touch /usr/share/rime-data
+sudo mkdir -p /usr/share/rime-data
 mkdir -p ~/.config/tmux_rime
 cp -r /usr/local/share/rime-data ~/.config/tmux_rime/rime
 #+end_src
