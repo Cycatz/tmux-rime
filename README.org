@@ -35,7 +35,11 @@ git checkout vt-rime
 #+end_src
 
 ** Usage 
-Run the rime server:  
+First, install the custom kernel https://github.com/Cycatz/freebsd-src and switch the branch to ~releng/13.0~. However, I'm not going to introduce how to configure the custom kernel here.
+
+After you finish configuring the kernel, you'll need to start a another console/terminal on your computer with the newly-built kernel to run the rime IME server. 
 #+begin_src sh
 ./rime-server/rime-server/rime-server.py
 #+end_src
+
+Now you can press the right ctrl key to toggle the IME mode and type in Chinese in ~vt~!
