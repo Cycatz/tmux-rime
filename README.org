@@ -5,6 +5,8 @@
 ** Description
 ~tmux-rime~ is a tmux plugin that let you type CJK chars within terminal.
 
+You may refer to the introduction slide: [[file:slide/presentation.pdf]] 
+
 
 ** Program Structure 
 #+html:   <img src="assets/structure_small.png" alt="structure.png" />
