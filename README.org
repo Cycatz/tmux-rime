@@ -28,7 +28,7 @@ git checkout vt-rime
 #+end_src
 
 ** Usage 
-First, install the custom kernel https://github.com/Cycatz/freebsd-src. (However, I'm not going to introduce how to configure the custom kernel here.)
+First, install the custom kernel with the branch ~vt-ime~ https://github.com/Cycatz/freebsd-src/tree/vt-ime (However, I'm not going to introduce how to configure the custom kernel here.)
 
 After you finish configuring the kernel, you'll need to start another console/terminal on your computer with the newly-built kernel to run the rime IME server. 
 #+begin_src sh
