@@ -49,7 +49,7 @@ cd ~/.tmux/plugins/tmux-rime
 ./build.sh
 #+end_src
 
-Add the following line to your tmux config, e.g., =~/.tmux.conf~=:
+Add the following line to your tmux config, e.g., =~/.tmux.conf=:
 #+begin_src sh 
 run-shell '~/.tmux/plugins/tmux-rime/tmux_rime.tmux'
 #+end_src

@@ -13,7 +13,7 @@ commands_pipe='/tmp/tmux-rime.client'
 enable_rime_mode() {
     tmux set-window-option key-table tmux_rime
     tmux switch-client -T tmux_rime
-    tmux_prefix="$(tmux show -gqv prefix)" # Save tmux prefix 
+    tmux_prefix="$(tmux show -gqv prefix)" # Save tmux prefix
     tmux set-option -g prefix None
 }
 
