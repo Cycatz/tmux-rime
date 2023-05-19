@@ -128,13 +128,12 @@ class RimeWrapper:
 
         text = ''
         if _commit is None:
-            print('Error')
+            return None
         else:
             try:
                 data_size = _commit.contents.data_size
                 text = _commit.contents.text.decode('utf-8')
-            except ValueError:  # null pointer
-                print('Error!')
+            except ValueError:  # Ignore the error when contents is None
                 pass
 
         rime_wrapper_free_commit(self.rime_wrapper_ptr, _commit)

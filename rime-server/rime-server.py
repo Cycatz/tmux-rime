@@ -25,28 +25,32 @@ class TmuxRimeSession:
     def start(self):
         self.rime = RimeWrapper()
         self.rime.start()
-        self.rime.set_schema('bopomofo')
+        # self.rime.set_schema('bopomofo_tw')
+        # self.rime.set_schema('japanese')
+        self.rime.set_schema('chemical-kb')
+        # self.rime.set_schema('luna_pinyin')
+        # print("Schemas:", self.rime.get_schema_list())
         self.output_text = ''
 
     def finish(self):
         self.rime.finish()
 
     def handle_key(self, key):
-        # Special case for space
         self.output_text = ''
-        if key == 32 and not self.rime.has_candidates():
-            self.commit_text()
+        # Enter key
+        if key == 0xd:
+            self.rime.process_key(65293, 0)
         else:
             self.rime.process_key(key, 0)
-
+        self.update_commit_text()
     def delete_char(self):
         self.rime.process_key(65288, 0)
 
-    def commit_text(self):
+    def update_commit_text(self):
         """ Commit the text """
-        commit_text_str = self.rime.get_commit_text_preview()
+        commit_text_str = self.rime.get_commit()
         self.output_text = commit_text_str
-        self.clear_state()
+        # self.clear_state()
 
     def commit_raw_str(self):
         """ Get the raw input  """
